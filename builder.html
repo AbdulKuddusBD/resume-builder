@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV Builder | Smart ATS CV Builder</title>
+  <meta name="description" content="Build Bangla and English ATS friendly CV with live preview, PDF download, ATS score and Firebase save.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="builder">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top builder-nav">
+    <div class="container-fluid px-lg-4">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html"><span class="brand-mark">CV</span><span>Smart ATS</span></a>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <span class="small text-secondary d-none d-lg-inline" data-user-email>Guest mode</span>
+        <button class="btn btn-outline-dark btn-sm" data-google-login><span class="google-dot me-1">G</span> Login</button>
+        <a class="btn btn-outline-primary btn-sm" href="dashboard.html">Dashboard</a>
+        <button class="btn btn-light btn-sm d-none" data-logout>Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="builder-page">
+    <div class="container-fluid px-lg-4 py-3">
+      <div class="row g-3">
+        <div class="col-xl-5 col-lg-6 builder-form-col">
+          <div class="card-soft builder-panel">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center mb-3">
+              <div>
+                <span class="eyebrow">Free CV Create Flow</span>
+                <h1 class="h3 mb-1">Professional CV Builder</h1>
+                <p class="text-secondary mb-0">Form পূরণ করুন, preview দেখুন, save করুন, PDF download করুন।</p>
+              </div>
+              <button class="btn btn-outline-dark d-lg-none" data-preview-toggle>Preview</button>
+            </div>
+
+            <div class="builder-actions sticky-actions mb-3">
+              <button class="btn btn-primary" data-save-resume>Save CV</button>
+              <button class="btn btn-outline-primary" data-download-pdf>Download PDF</button>
+              <button class="btn btn-outline-secondary" data-load-sample>Sample</button>
+            </div>
+
+            <div class="alert alert-warning small mb-3 d-none" data-firebase-warning>
+              Firebase config এখনো বসানো হয়নি। Login/cloud save চালাতে <code>js/firebase-config.js</code> update করুন।
+            </div>
+
+            <ul class="nav nav-pills builder-tabs mb-3" id="builderTabs" role="tablist">
+              <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-basic" type="button">Basic</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-sections" type="button">Sections</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-ai" type="button">AI + ATS</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-design" type="button">Design</button></li>
+            </ul>
+
+            <form id="resumeForm" novalidate>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-basic">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">CV Language</label>
+                      <select class="form-select" name="language" data-field="language">
+                        <option value="en">English CV</option>
+                        <option value="bn">বাংলা CV</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Target Job Title</label>
+                      <input class="form-control" name="targetTitle" data-field="targetTitle" placeholder="Frontend Developer">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Full Name *</label>
+                      <input class="form-control" name="fullName" data-field="fullName" required placeholder="Your full name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Current Job Title</label>
+                      <input class="form-control" name="jobTitle" data-field="jobTitle" placeholder="Digital Marketer">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email *</label>
+                      <input class="form-control" type="email" name="email" data-field="email" required placeholder="you@email.com">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Phone</label>
+                      <input class="form-control" name="phone" data-field="phone" placeholder="+8801XXXXXXXXX">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Location</label>
+                      <input class="form-control" name="location" data-field="location" placeholder="Dhaka, Bangladesh">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">LinkedIn</label>
+                      <input class="form-control" name="linkedin" data-field="linkedin" placeholder="linkedin.com/in/username">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Portfolio / Website</label>
+                      <input class="form-control" name="portfolio" data-field="portfolio" placeholder="yourportfolio.com">
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex justify-content-between gap-2 align-items-center">
+                        <label class="form-label mb-0">Professional Summary</label>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-ai-summary>AI Generate</button>
+                      </div>
+                      <textarea class="form-control mt-2" rows="5" name="summary" data-field="summary" placeholder="Write a short ATS optimized career summary"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-sections">
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Skills</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-ai-skills>Suggest Skills</button>
+                    </div>
+                    <div class="tag-input">
+                      <input class="form-control" data-skill-input placeholder="Type a skill and press Enter">
+                      <div class="tag-list" data-skill-list></div>
+                    </div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Work Experience</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-add-experience>+ Add</button>
+                    </div>
+                    <div data-experience-list></div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Education</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-add-education>+ Add</button>
+                    </div>
+                    <div data-education-list></div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Projects</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-add-project>+ Add</button>
+                    </div>
+                    <div data-project-list></div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Certifications</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-add-certification>+ Add</button>
+                    </div>
+                    <div data-certification-list></div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h2 class="h5 mb-0">Custom Sections</h2>
+                      <button type="button" class="btn btn-sm btn-outline-primary" data-add-custom>+ Add</button>
+                    </div>
+                    <div data-custom-list></div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-ai">
+                  <div class="section-block">
+                    <h2 class="h5">AI Writing Assistant</h2>
+                    <p class="text-secondary small">Static-safe AI assistant summary, skills এবং bullet points generate করে। Real GPT লাগলে README অনুযায়ী Cloud Function endpoint যুক্ত করুন।</p>
+                    <div class="row g-2">
+                      <div class="col-md-4"><button type="button" class="btn btn-outline-primary w-100" data-ai-summary>Generate Summary</button></div>
+                      <div class="col-md-4"><button type="button" class="btn btn-outline-primary w-100" data-ai-skills>Suggest Skills</button></div>
+                      <div class="col-md-4"><button type="button" class="btn btn-outline-primary w-100" data-ai-experience>Improve Experience</button></div>
+                    </div>
+                  </div>
+
+                  <div class="section-block">
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-2">
+                      <div>
+                        <h2 class="h5 mb-1">Job Keyword Analyzer</h2>
+                        <p class="text-secondary small mb-0">Job description paste করলে missing keywords দেখাবে।</p>
+                      </div>
+                      <button type="button" class="btn btn-sm btn-primary" data-analyze-keywords>Analyze</button>
+                    </div>
+                    <textarea class="form-control" rows="6" data-job-description placeholder="Paste job description here"></textarea>
+                    <div class="keyword-results mt-3" data-keyword-results></div>
+                  </div>
+
+                  <div class="section-block">
+                    <h2 class="h5">ATS Score</h2>
+                    <div class="score-card">
+                      <div class="score-circle"><span data-ats-score>0</span><small>/100</small></div>
+                      <div>
+                        <h3 class="h6">Optimization Suggestions</h3>
+                        <ul class="mb-0 small" data-ats-suggestions></ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-design">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Template</label>
+                      <select class="form-select" name="template" data-field="template" data-template-select></select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Accent Color</label>
+                      <input class="form-control form-control-color w-100" type="color" name="accent" data-field="accent" value="#2563eb">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Font</label>
+                      <select class="form-select" name="font" data-field="font">
+                        <option value="Arial, Helvetica, sans-serif">Arial</option>
+                        <option value="Calibri, Arial, sans-serif">Calibri</option>
+                        <option value="Helvetica, Arial, sans-serif">Helvetica</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Spacing</label>
+                      <select class="form-select" name="spacing" data-field="spacing">
+                        <option value="comfortable">Comfortable</option>
+                        <option value="compact">Compact</option>
+                        <option value="relaxed">Relaxed</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="template-grid mt-3" data-template-grid></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 builder-preview-col" data-preview-panel>
+          <div class="preview-toolbar card-soft mb-3">
+            <div>
+              <span class="eyebrow">Live Preview</span>
+              <h2 class="h5 mb-0" data-preview-title>Resume Preview</h2>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-primary btn-sm" data-download-pdf>PDF</button>
+              <button class="btn btn-outline-secondary btn-sm d-lg-none" data-preview-toggle>Close</button>
+            </div>
+          </div>
+          <div class="resume-canvas">
+            <article id="resumePreview" class="resume-page template-classic"></article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <template id="experienceTemplate">
+    <div class="dynamic-item" data-item>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <strong>Experience</strong>
+        <button type="button" class="btn btn-sm btn-light text-danger" data-remove>Remove</button>
+      </div>
+      <div class="row g-2">
+        <div class="col-md-6"><input class="form-control" data-subfield="role" placeholder="Role / Position"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="company" placeholder="Company"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="start" placeholder="Start date"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="end" placeholder="End date / Present"></div>
+        <div class="col-12"><textarea class="form-control" rows="4" data-subfield="description" placeholder="Use bullet points. Example: Managed SEO campaigns improving organic traffic by 45%."></textarea></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="educationTemplate">
+    <div class="dynamic-item" data-item>
+      <div class="d-flex justify-content-between align-items-center mb-2"><strong>Education</strong><button type="button" class="btn btn-sm btn-light text-danger" data-remove>Remove</button></div>
+      <div class="row g-2">
+        <div class="col-md-6"><input class="form-control" data-subfield="degree" placeholder="Degree"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="institution" placeholder="Institution"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="year" placeholder="Year"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="result" placeholder="Result / GPA"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="projectTemplate">
+    <div class="dynamic-item" data-item>
+      <div class="d-flex justify-content-between align-items-center mb-2"><strong>Project</strong><button type="button" class="btn btn-sm btn-light text-danger" data-remove>Remove</button></div>
+      <div class="row g-2">
+        <div class="col-md-6"><input class="form-control" data-subfield="name" placeholder="Project name"></div>
+        <div class="col-md-6"><input class="form-control" data-subfield="link" placeholder="Project link"></div>
+        <div class="col-12"><textarea class="form-control" rows="3" data-subfield="description" placeholder="Project summary and impact"></textarea></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="certificationTemplate">
+    <div class="dynamic-item" data-item>
+      <div class="d-flex justify-content-between align-items-center mb-2"><strong>Certification</strong><button type="button" class="btn btn-sm btn-light text-danger" data-remove>Remove</button></div>
+      <div class="row g-2">
+        <div class="col-md-5"><input class="form-control" data-subfield="name" placeholder="Certification name"></div>
+        <div class="col-md-4"><input class="form-control" data-subfield="issuer" placeholder="Issuer"></div>
+        <div class="col-md-3"><input class="form-control" data-subfield="year" placeholder="Year"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="customTemplate">
+    <div class="dynamic-item" data-item>
+      <div class="d-flex justify-content-between align-items-center mb-2"><strong>Custom Section</strong><button type="button" class="btn btn-sm btn-light text-danger" data-remove>Remove</button></div>
+      <div class="row g-2">
+        <div class="col-12"><input class="form-control" data-subfield="title" placeholder="Section title e.g. Awards, Publications, Volunteer"></div>
+        <div class="col-12"><textarea class="form-control" rows="3" data-subfield="content" placeholder="Content or bullet points"></textarea></div>
+      </div>
+    </div>
+  </template>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast align-items-center border-0 shadow" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex"><div class="toast-body" data-toast-body>Ready</div><button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script type="module" src="js/builder.js"></script>
+</body>
+</html>
