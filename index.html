@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart ATS CV Builder | AI Resume SaaS</title>
+  <meta name="description" content="Create ATS-friendly Bangla and English CVs with live preview, Firebase save, and PDF export.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home"><span class="brand-mark">ATS</span> Smart CV</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#templates">Templates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#authModal">Login</a></li>
+          <li class="nav-item"><a class="btn btn-primary btn-sm" href="#builder">Create CV Free</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero py-5 py-lg-6">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge rounded-pill text-bg-light border mb-3">Bangla + English ATS CV Builder</span>
+          <h1 class="display-5 fw-bold lh-1 mb-3">Build a job-winning CV in minutes.</h1>
+          <p class="lead text-secondary mb-4">A Firebase-powered resume SaaS starter with ATS-safe templates, live preview, keyword checker, resume score, save/load, and PDF export.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary btn-lg" href="#builder">Start Building</a>
+            <a class="btn btn-light btn-lg border" href="#features">See Features</a>
+          </div>
+          <div class="row g-3 mt-4 small text-secondary">
+            <div class="col-6 col-sm-4"><strong class="text-dark d-block">12+</strong>Templates</div>
+            <div class="col-6 col-sm-4"><strong class="text-dark d-block">A4 PDF</strong>Export</div>
+            <div class="col-6 col-sm-4"><strong class="text-dark d-block">Firebase</strong>Database</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-card shadow-lg">
+            <div class="mini-toolbar"><span></span><span></span><span></span></div>
+            <div class="resume-mini">
+              <h2>Jannatul Ferdous</h2><p>Frontend Developer · Dhaka · email@example.com</p>
+              <h3>Professional Summary</h3><p>Results-driven developer with experience building responsive, accessible, and ATS-ready web applications.</p>
+              <h3>Skills</h3><p>JavaScript · React · Bootstrap · Firebase · API</p>
+              <h3>Experience</h3><ul><li>Built reusable UI components and improved page speed by 35%.</li><li>Integrated Firebase Auth and Firestore for secure cloud data.</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="py-5 bg-light-subtle">
+    <div class="container">
+      <div class="text-center mb-4"><h2 class="fw-bold">Complete SaaS Features</h2><p class="text-secondary">Everything needed for a CVBanao-style MVP.</p></div>
+      <div class="row g-3">
+        <div class="col-md-4"><div class="feature-card"><h5>ATS Templates</h5><p>Standard headings, clean layout, no table-heavy resume structure.</p></div></div>
+        <div class="col-md-4"><div class="feature-card"><h5>Firebase Auth</h5><p>Email/password login, register, logout, and user-specific saved CVs.</p></div></div>
+        <div class="col-md-4"><div class="feature-card"><h5>Firestore Save</h5><p>Save, update, load, and delete CV data from cloud database.</p></div></div>
+        <div class="col-md-4"><div class="feature-card"><h5>Live Preview</h5><p>Every field updates the resume preview instantly on desktop and mobile.</p></div></div>
+        <div class="col-md-4"><div class="feature-card"><h5>ATS Score</h5><p>Checks required sections, contact info, keyword match, bullets, and length.</p></div></div>
+        <div class="col-md-4"><div class="feature-card"><h5>PDF Export</h5><p>Download exact preview as A4 PDF using html2pdf.js.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="templates" class="py-5">
+    <div class="container">
+      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+        <div><h2 class="fw-bold mb-1">ATS-Friendly Templates</h2><p class="text-secondary mb-0">Classic, modern, fresher, tech, marketing, compact, and Bangla-ready styles.</p></div>
+        <a href="#builder" class="btn btn-outline-primary">Choose Template</a>
+      </div>
+      <div class="row g-3" id="templateGallery"></div>
+    </div>
+  </section>
+
+  <main id="builder" class="builder-section py-5 bg-light">
+    <div class="container-fluid px-lg-4">
+      <div class="row g-4">
+        <aside class="col-lg-4 col-xl-3">
+          <div class="builder-panel sticky-lg-top">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="h4 fw-bold mb-0">CV Builder</h2>
+              <button class="btn btn-sm btn-outline-secondary d-lg-none" id="togglePreviewBtn">Preview</button>
+            </div>
+            <div class="alert alert-warning small" id="firebaseNotice">Add your Firebase config in <code>assets/js/firebase-config.js</code> to enable login and cloud save.</div>
+            <div class="d-flex gap-2 mb-3">
+              <button class="btn btn-dark btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#authModal" id="loginBtn">Login</button>
+              <button class="btn btn-outline-dark btn-sm flex-fill" id="logoutBtn" hidden>Logout</button>
+            </div>
+            <div class="mb-3 small text-secondary" id="userStatus">Not logged in. Local save still works.</div>
+
+            <ul class="nav nav-pills nav-fill mb-3" id="builderTabs" role="tablist">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tabContent">Content</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabDesign">Design</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabATS">ATS</button></li>
+            </ul>
+
+            <div class="tab-content">
+              <section class="tab-pane fade show active" id="tabContent">
+                <form id="cvForm" novalidate>
+                  <div class="accordion" id="formAccordion">
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#basicInfo">Basic Info</button></h2><div id="basicInfo" class="accordion-collapse collapse show"><div class="accordion-body form-grid">
+                      <input class="form-control" data-field="fullName" required placeholder="Full Name">
+                      <input class="form-control" data-field="jobTitle" required placeholder="Job Title">
+                      <input class="form-control" data-field="phone" required placeholder="Phone">
+                      <input class="form-control" data-field="email" type="email" required placeholder="Email">
+                      <input class="form-control" data-field="location" placeholder="Location">
+                      <input class="form-control" data-field="linkedin" placeholder="LinkedIn URL">
+                      <input class="form-control" data-field="portfolio" placeholder="Portfolio URL">
+                    </div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#summaryInfo">Summary</button></h2><div id="summaryInfo" class="accordion-collapse collapse"><div class="accordion-body">
+                      <textarea class="form-control" rows="4" data-field="summary" placeholder="Professional summary"></textarea>
+                      <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="generateSummaryBtn">Generate Sample Summary</button>
+                    </div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skillsInfo">Skills</button></h2><div id="skillsInfo" class="accordion-collapse collapse"><div class="accordion-body">
+                      <div class="input-group mb-2"><input class="form-control" id="skillInput" placeholder="Add skill"><button class="btn btn-outline-dark" type="button" id="addSkillBtn">Add</button></div>
+                      <div id="skillsList" class="tag-list"></div>
+                    </div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#expInfo">Experience</button></h2><div id="expInfo" class="accordion-collapse collapse"><div class="accordion-body"><div id="experienceList"></div><button type="button" class="btn btn-sm btn-outline-primary" id="addExperienceBtn">+ Add Experience</button></div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eduInfo">Education</button></h2><div id="eduInfo" class="accordion-collapse collapse"><div class="accordion-body"><div id="educationList"></div><button type="button" class="btn btn-sm btn-outline-primary" id="addEducationBtn">+ Add Education</button></div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectInfo">Projects & Certificates</button></h2><div id="projectInfo" class="accordion-collapse collapse"><div class="accordion-body"><div id="projectList"></div><button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addProjectBtn">+ Add Project</button><div id="certList"></div><button type="button" class="btn btn-sm btn-outline-primary" id="addCertBtn">+ Add Certification</button></div></div></div>
+                    <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customInfo">Custom Sections</button></h2><div id="customInfo" class="accordion-collapse collapse"><div class="accordion-body"><div id="customList"></div><button type="button" class="btn btn-sm btn-outline-primary" id="addCustomBtn">+ Add Custom Section</button></div></div></div>
+                  </div>
+                </form>
+              </section>
+
+              <section class="tab-pane fade" id="tabDesign">
+                <label class="form-label">Template</label><select class="form-select mb-3" id="templateSelect"></select>
+                <label class="form-label">Language</label><select class="form-select mb-3" id="languageSelect"><option value="en">English</option><option value="bn">বাংলা</option></select>
+                <label class="form-label">Accent Color</label><input type="color" class="form-control form-control-color mb-3" id="accentColor" value="#2563eb">
+                <label class="form-label">Font</label><select class="form-select mb-3" id="fontSelect"><option>Arial</option><option>Calibri</option><option>Helvetica</option><option>Inter</option><option>Noto Sans Bengali</option></select>
+                <div class="d-grid gap-2"><button class="btn btn-primary" id="downloadPdfBtn">Download PDF</button><button class="btn btn-outline-dark" id="saveLocalBtn">Save Local</button><button class="btn btn-outline-primary" id="saveCloudBtn">Save to Firebase</button><button class="btn btn-outline-secondary" id="loadCloudBtn">Load My CVs</button></div>
+                <div id="savedCvList" class="mt-3"></div>
+              </section>
+
+              <section class="tab-pane fade" id="tabATS">
+                <label class="form-label">Paste Job Description</label><textarea class="form-control mb-2" id="jobDescription" rows="6" placeholder="Paste job post here for keyword matching"></textarea>
+                <button class="btn btn-primary btn-sm mb-3" id="analyzeBtn">Analyze ATS</button>
+                <div class="score-box"><div class="d-flex justify-content-between"><strong>ATS Score</strong><strong id="scoreText">0/100</strong></div><div class="progress my-2"><div id="scoreBar" class="progress-bar" style="width:0%"></div></div><ul id="atsSuggestions" class="small mb-0"></ul></div>
+              </section>
+            </div>
+          </div>
+        </aside>
+
+        <section class="col-lg-8 col-xl-9 preview-column" id="previewColumn">
+          <div class="preview-actions d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div><h2 class="h4 fw-bold mb-0">Live Preview</h2><p class="text-secondary small mb-0">ATS-safe A4 resume preview</p></div>
+            <div class="d-flex gap-2"><button class="btn btn-outline-secondary btn-sm" id="resetBtn">Reset Demo</button><button class="btn btn-primary btn-sm" id="downloadPdfBtnTop">Download PDF</button></div>
+          </div>
+          <div class="resume-shell"><article id="resumePreview" class="resume-page classic-template"></article></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <section id="pricing" class="py-5">
+    <div class="container"><div class="text-center mb-4"><h2 class="fw-bold">Pricing Ready</h2><p class="text-secondary">Use these cards for future subscription integration.</p></div><div class="row g-3 justify-content-center"><div class="col-md-4"><div class="price-card"><h4>Free</h4><p class="display-6 fw-bold">৳0</p><p>1 CV, basic templates, PDF download.</p></div></div><div class="col-md-4"><div class="price-card featured"><h4>Pro</h4><p class="display-6 fw-bold">৳299</p><p>All templates, AI features, unlimited downloads.</p></div></div><div class="col-md-4"><div class="price-card"><h4>Business</h4><p class="display-6 fw-bold">Custom</p><p>Admin panel, template marketplace, team accounts.</p></div></div></div></div>
+  </section>
+
+  <footer class="py-4 bg-dark text-white"><div class="container d-flex flex-column flex-md-row justify-content-between gap-2"><p class="mb-0">© 2026 Smart ATS CV Builder</p><p class="mb-0 small text-white-50">Built with HTML, CSS, Bootstrap 5, JavaScript, Firebase</p></div></footer>
+
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Login / Register</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><input class="form-control mb-2" id="authEmail" type="email" placeholder="Email"><input class="form-control mb-3" id="authPassword" type="password" placeholder="Password"><div class="d-flex gap-2"><button class="btn btn-primary flex-fill" id="registerBtn">Register</button><button class="btn btn-dark flex-fill" id="authLoginBtn">Login</button></div><p class="small text-secondary mt-3 mb-0" id="authMsg">Firebase config required for authentication.</p></div></div></div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script type="module" src="./assets/js/firebase-config.js"></script>
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
